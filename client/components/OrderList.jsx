@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchOrders } from '../actions/orders'
 
 import Order from './Order'
 
 function OrderList({ children }) {
-  const orders = []
+  const dispatch = useDispatch()
+  const orders = useSelector((state) => state.orders)
+
+  useEffect(() => {
+    dispatch(fetchOrders())
+  }, [])
+
   return (
     <div className="orderlist">
       {children} {/* Holds the WaitIndicator */}

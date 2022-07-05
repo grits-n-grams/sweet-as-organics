@@ -1,16 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { updateOrderStatus } from '../actions/orders'
 
 import OrderItem from './OrderItem'
 
 function Order(props) {
   const { id, products, createdAt, status } = props.order
+  const dispatch = useDispatch()
 
   function cancelOrder() {
-    console.log('coming soon!')
+    dispatch(updateOrderStatus(id, 'cancelled'))
   }
 
   function completeOrder() {
-    console.log('coming soon!')
+    dispatch(updateOrderStatus(id, 'completed'))
   }
 
   return (
